@@ -1,0 +1,3 @@
+[filter "evil"]
+  clean = "calc.exe"
+  smudge = "calc.exe"
